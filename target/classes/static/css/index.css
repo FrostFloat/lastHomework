@@ -1,0 +1,18 @@
+#header{}
+#viceHeader{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+#popularConduct{}
+#showConduct{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.showConductRow{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}

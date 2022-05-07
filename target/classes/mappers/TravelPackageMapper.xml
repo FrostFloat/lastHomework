@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TravelPackageDao">
+    <resultMap id="BaseResultMap" type="com.bean.TravelPackage" >
+        <result column="tpId" property="id"></result>
+        <result column="tpName" property="name"></result>
+        <result column="tpPrice" property="price"></result>
+        <result column="tpSummary" property="summary"></result>
+        <result column="tpBeginDate" property="beginDate"></result>
+        <result column="tpReturnDate" property="returnDate"></result>
+        <result column="tpArrangement" property="arrangement"></result>
+        <result column="tpCompany" property="company"></result>
+        <result column="tpImgLocation" property="imgLocation"></result>
+    </resultMap>
+    <insert id="insert" parameterType="com.bean.TravelPackage">
+        INSERT INTO
+        travelpackage (tpName,tpPrice,tpSummary,tpBeginDate,tpReturnDate,tpArrangement,tpCompany,tpImgLocation)
+        VAlUES
+        (#{name},#{price},#{summary},#{beginDate},#{returnDate},#{arrangement},#{company},#{imgLocation});
+    </insert>
+    <select id="queryByCom" parameterType="String" resultMap="BaseResultMap" resultType="com.bean.TravelPackage">
+        SELECT * FROM travelpackage WHERE tpCompany=#{comName}
+    </select>
+</mapper>

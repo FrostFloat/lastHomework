@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <link rel="stylesheet" href="/css/user/userCenter.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--
+    <style type="text/css">
+        #userCenter{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+    </style>
+    -->
+</head>
+<body>
+    <!--页面标题-->
+    <div class="page-header">
+        <h1>
+            个人中心
+        </h1>
+    </div>
+    <div id="userCenter">
+        <!--垂直导航栏-->
+        <div id="verticalNavigation">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a target="config" href="/user/config/displayImf">个人中心</a></li>
+                <li><a target="config" href="/user/config/assets">资产</a></li>
+                <li><a target="config" href="/user/config/order">订单</a></li>
+            </ul>
+        </div>
+        <!--详细内容-->
+        <!--
+        <div id="userConfig">
+            <iframe src="config/displayImf.html" id="config" name="config" frameborder="0" width="1000px" height="1000px"></iframe>
+        </div>
+        -->
+        <div id="userConfig">
+            <iframe src="/user/config/displayImf" id="config" name="config" frameborder="0" width="1000px" height="1000px"></iframe>
+        </div>
+
+    </div>
+</body>
+</html>

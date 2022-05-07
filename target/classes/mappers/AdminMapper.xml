@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AdminDao">
+    <resultMap id="BaseResultMap" type="com.bean.Administrator" >
+        <result column="adId" property="id"></result>
+        <result column="adPhone" property="phone"></result>
+        <result column="adPassword" property="password"></result>
+        <result column="adName" property="name"></result>
+        <result column="adIntroduce" property="introduce"></result>
+    </resultMap>
+    <insert id="insert" parameterType="com.bean.Administrator">
+        INSERT INTO administrator (adPhone,adPassword,adIntroduce,adName) VAlUES (#{phone},#{password},#{introduce},#{name});
+    </insert>
+    <select id="queryIdByAdmin" parameterType="String" resultType="String">
+        SELECT adId FROM administrator WHERE adPhone = #{adminAccount}
+    </select>
+    <select id="queryPwdByAdmin" parameterType="String" resultType="String">
+        SELECT adPassword FROM administrator WHERE adPhone = #{adminAccount}
+    </select>
+    <select id="queryNameByAdmin" parameterType="String" resultType="String">
+        SELECT adName FROM administrator WHERE adPhone = #{adminAccount}
+    </select>
+    <select id="query" parameterType="String" resultMap="BaseResultMap" resultType="com.bean.Administrator">
+        SELECT * FROM administrator WHERE adPhone = #{adminAccount}
+    </select>
+
+</mapper>

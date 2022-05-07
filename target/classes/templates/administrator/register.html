@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员注册</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--用户注册框-->
+<div id="registerFormDiv">
+    <form class="form-horizontal" id="registerForm" role="form" method="post">
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">公司名称<span style="color: red">*</span></label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" placeholder="请输入公司名称" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">密码<span style="color: red">*</span></label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword" class="col-sm-2 control-label">确认密码<span style="color: red">*</span></label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="请再次输入密码" required="required" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone" class="col-sm-2 control-label">电话号码<span style="color: red">*</span></label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入电话号码"  required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="introduce">公司介绍</label>
+            <input type="text" class="form-control" id="introduce" name="introduce" placeholder="请输入介绍" >
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="submit" class="form-control" id="submit" value="提交" onclick="equalPwd()">
+            </div>
+            <div class="col-sm-10">
+                <input type="reset" class="form-control" id="reset" value="重置" >
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    //判断两次输入的密码是否相同
+    function equalPwd() {
+        if (document.getElementById("confirmPassword").value != document.getElementById("password").value){//不相同 则清空两次输入的密码
+            alert("两次输入的密码不相同,请重新输入");
+        }
+        else {//相同 则发生跳转
+            document.getElementById("registerForm").action = "/admin/register";
+        }
+    }
+</script>
+</body>
+</html>

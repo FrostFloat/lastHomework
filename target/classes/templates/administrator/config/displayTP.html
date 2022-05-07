@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>已有产品信息</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<table class="table table-hover">
+    <tr>
+        <th>名称</th>
+        <th>价格</th>
+        <th>数量</th>
+        <th>开始日期</th>
+        <th>返回日期</th>
+        <th>状态</th>
+    </tr>
+
+    <tr th:each="tp:${session.TravelPackages}" th:id="TP + ${tp.getId()}" th:onclick="displayData('TP' + '[[${tp.getId()}]]')">
+        <a th:href="@{/admin/displayTP(id=${tp.getId()})}">
+        <td th:text="${tp.name}">名字</td>
+        <td th:text="${tp.price}">价格</td>
+        <td th:text="${tp.amount}">数量</td>
+        <td th:text="${tp.beginDate}">开始日期</td>
+        <td th:text="${tp.returnDate}">返回日期</td>
+        <td th:text="${tp.id}">状态</td>
+        </a>
+    </tr>
+</table>
+
+</body>
+<script type="text/javascript">
+    var displayData = function (id) {
+        //window.location.href = "/admin/displayDetailedTP?id=" + id;
+    }
+
+</script>
+</html>

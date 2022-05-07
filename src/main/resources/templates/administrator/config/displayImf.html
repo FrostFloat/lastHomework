@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公司信息展示</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body >
+<form class="form-horizontal" role="form" id="displayImfForm" th:object="${session.Admin}">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">adId</label>
+        <div class="col-sm-10">
+            <p class="form-control-static" th:text="*{getId()}">adId</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="NickName" class="col-sm-2 control-label">名称</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="nickName" name="nickName" th:value="*{getName()}" placeholder="名称">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="phone" class="col-sm-2 control-label">电话号码</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="phone" name="phone" th:value="*{getPhone()}" placeholder="电话号码" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="RealName" class="col-sm-2 control-label">真实姓名</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="realName" name="realName" th:value="*{getIntroduce()}" placeholder="真实姓名">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
+            <button class="form-control" id="update" onclick="update()" >编辑</button>
+            <input type="submit" class="form-control" id="submit" onclick="document.getElementById('displayImfForm').action = '/admin/update';" value="保存" >
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

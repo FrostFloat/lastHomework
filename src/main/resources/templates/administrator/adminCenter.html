@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="/css/administrator/adminCenter.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--页面标题-->
+<div class="page-header">
+    <h1>
+        管理中心
+    </h1>
+</div>
+<div id="adminCenter">
+    <!--垂直导航栏-->
+    <div id="verticalNavigation">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a target="config" href="/admin/config/displayImf">信息展示</a></li>
+            <li><a target="config" href="/admin/config/displayTP">已有产品</a></li>
+            <li><a target="config" href="/admin/config/addTP">添加产品</a></li>
+        </ul>
+    </div>
+
+    <!--详细内容-->
+    <div id="adminConfig">
+        <iframe src="/admin/config/displayImf" id="config" name="config" frameborder="0" width="1000px" height="1000px"></iframe>
+    </div>
+
+</div>
+</body>
+</html>

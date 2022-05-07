@@ -1,0 +1,23 @@
+ server:
+   port: 80
+ #旅游产品展示图片存放位置
+ tp-img-path: classpath:/static/images/tp/
+ tp-img-suffix:
+   - .jpg
+   - .png
+   - guangzhou
+   - shenzhen
+ # 配置mybatis
+ spring:
+   datasource:
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     url: jdbc:mysql://localhost:3306/gotour?serverTimezone=GMT%2B8
+     username: root
+     password: 935601
+   thymeleaf:
+     mode: HTML5
+     prefix: classpath:/templates/
+     suffix: .html
+ #配置mybatis下的mapper位置
+ mybatis:
+   mapper-locations: classpath*:mappers/*Mapper.xml

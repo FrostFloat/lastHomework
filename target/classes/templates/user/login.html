@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="/css/user/login.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--用户登录框-->
+<div id="loginForm">
+    <form class="form-horizontal" role="form" method="post" action="/user/login">
+        <p style="color: red" th:text="${LoginMsg}" th:if="${not #strings.isEmpty(LoginMsg)}">请输入账号和密码</p>
+        <p style="color: blue " th:if="${#strings.isEmpty(LoginMsg)}">请输入账号和密码</p>
+        <div class="form-group">
+            <label for="userAccount" class="col-sm-2 control-label">账号</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="userAccount" name="userAccount" placeholder="请输入账号" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="password" name="password" placeholder="请输入密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="submit" class="form-control" id="submit" value="登录" >
+                <button class="form-control" id="register" onclick="jump('/user/userRegister')">注册</button>
+                <button class="form-control" id="admin" onclick="jump('/admin/adminLogin')">管理员入口</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script>
+    function jump(url) {
+        location.href=url;
+    }
+</script>
+</body>
+</html>

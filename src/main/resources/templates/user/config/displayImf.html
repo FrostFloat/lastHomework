@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息展示</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        //解除readonly——未实现
+        function update() {
+            var test = document.getElementById("NickName");
+            test.readOnly = false;
+
+        }
+    </script>
+</head>
+<body>
+
+<form class="form-horizontal" role="form" id="displayImfForm" th:object="${session.User}">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">UID</label>
+        <div class="col-sm-10">
+            <p class="form-control-static" th:text="*{getId()}">uid</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="NickName" class="col-sm-2 control-label">昵称</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="nickName" name="nickName" th:value="*{getNickName()}" placeholder="昵称">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="phone" class="col-sm-2 control-label">电话号码</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="phone" name="phone" th:value="*{getPhone()}" placeholder="电话号码" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="RealName" class="col-sm-2 control-label">真实姓名</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="realName" name="realName" th:value="*{getRealName()}" placeholder="真实姓名">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
+            <button class="form-control" id="update" onclick="update()" >编辑</button>
+            <input type="submit" class="form-control" id="submit" onclick="document.getElementById('displayImfForm').action = '/user/update';" value="保存" >
+        </div>
+    </div>
+</form>
+</body>
+
+</html>
