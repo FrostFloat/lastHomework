@@ -23,4 +23,7 @@
     <select id="queryByCom" parameterType="String" resultMap="BaseResultMap" resultType="com.bean.TravelPackage">
         SELECT * FROM travelpackage WHERE tpCompany=#{comName}
     </select>
+    <select id="queryById" parameterType="String" resultMap="BaseResultMap" resultType="com.bean.TravelPackage">
+        SELECT * FROM travelpackage WHERE tpId=#{id}
+    </select>
 </mapper>

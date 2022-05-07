@@ -84,9 +84,17 @@ public class TravelPackageController {
     }
     @RequestMapping("displayDetailedTP")
     public String displayDetailedTP(Model model, HttpServletRequest request){
-        System.out.println(2);
-        System.out.println(request.getRequestURL());
-        System.out.println(1);
+        System.out.println("controller----displayDetailedTP");
+        //获取id
+        String id = request.getParameter("id");
+        //根据id查询对应的产品信息
+        TravelPackage travelPackage = travelPackageServiceI.queryById(id);
+        //打印信息
+        System.out.println("id: " + id);
+        System.out.println(travelPackage.toString());
+        //存储到model
+        model.addAttribute("detail",travelPackage);
+
         return "/data/adminData";
     }
 }

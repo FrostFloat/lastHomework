@@ -16,25 +16,23 @@
         <th>开始日期</th>
         <th>返回日期</th>
         <th>状态</th>
+        <th></th>
     </tr>
 
-    <tr th:each="tp:${session.TravelPackages}" th:id="TP + ${tp.getId()}" th:onclick="displayData('TP' + '[[${tp.getId()}]]')">
-        <a th:href="@{/admin/displayTP(id=${tp.getId()})}">
+    <tr th:each="tp:${session.TravelPackages}" th:id="TP + ${tp.getId()}" th:href="@{/admin/displayTP(id=${tp.getId()})}">
         <td th:text="${tp.name}">名字</td>
         <td th:text="${tp.price}">价格</td>
         <td th:text="${tp.amount}">数量</td>
         <td th:text="${tp.beginDate}">开始日期</td>
         <td th:text="${tp.returnDate}">返回日期</td>
         <td th:text="${tp.id}">状态</td>
-        </a>
+        <td><a th:href="@{/admin/displayTP(id=${tp.getId()})}"><span class="glyphicon glyphicon-info-sign"></span></a></td>
     </tr>
 </table>
 
 </body>
 <script type="text/javascript">
-    var displayData = function (id) {
-        //window.location.href = "/admin/displayDetailedTP?id=" + id;
-    }
+
 
 </script>
 </html>

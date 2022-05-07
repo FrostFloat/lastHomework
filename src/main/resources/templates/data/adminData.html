@@ -3,61 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>产品信息</title>
+    <link rel="stylesheet" href="/css/">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!--面向管理员的产品细节展示-->
-<div class="container">
+<div id="tp" class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
-            <ul class="breadcrumb">
+        <div id="img" class="col-md-6 column">
+            <img alt="140x140" class="img-rounded" src="../../static/images/tp/test.jpg" height="300px" width="300px" />
+        </div>
+        <div id="detail" class="col-md-6 column">
+            <ul>
                 <li>
-                    <a href="#">Home</a>
+                    Lorem ipsum dolor sit amet
                 </li>
-                <li>
-                    <a href="#">Library</a>
-                </li>
-                <li class="active">
-                    Data
-                </li>
+
             </ul>
-            <div class="row clearfix">
-                <div class="col-md-4 column">
-                    <img alt="140x140" src="v3/default3.jpg" />
-                    <div class="panel panel-default">
-
-                        <div class="panel-body">
-                            Panel content
-                        </div>
-                        <div class="panel-body">
-                            Panel content
-                        </div>
-                        <div class="panel-body">
-                            Panel content
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-8 column">
-                    <h3 class="text-left">
-                        h3. 这是一套可视化布局系统.
-                    </h3>
-                    <p>
-                        <em>Git</em> 是一个分布式的版本控制系统，最初由 <strong>Linus Torvalds</strong> 编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在 <small>Ruby</small> 社区中。
-                    </p>
-                </div>
-
-            </div>
-            <h2>
-                Heading
-            </h2>
-            <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-            </p>
         </div>
     </div>
+
+    <div id="summary" class="row clearfix">
+        <div class="col-md-12 column">
+            <form role="form">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" readonly="readonly"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="arrangements" class="row clearfix">
+        <div class="col-md-12 column">
+            <form role="form">
+                <div class="form-group">
+                    <textarea class="form-control" rows="3" readonly="readonly"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
