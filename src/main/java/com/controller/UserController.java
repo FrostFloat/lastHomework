@@ -34,6 +34,11 @@ public class UserController {
     public String userLogin(Model model){//尚未输入账号密码
         return "/user/login";
     }
+    /*商品详细界面*/
+    @RequestMapping("/displayTP")
+    public String displayTP(Model model){
+        return "forward:/travelPackage/user/displayDetailedTP";
+    }
     /*用户中心*/
     @RequestMapping("/userCenter")
     public String userCenter(Model model){
@@ -55,19 +60,25 @@ public class UserController {
         return "/user/config/assets";
     }
 
+
     /*
      * 用户信息请求
      */
     /*注册*/
     @RequestMapping("/register")
     public String register(Model model, User user){
+        System.out.println("controller----insert");
+        //错误信息
+        String actExistMsg = "该电话号码已经存在,请更换电话号码";
         //判断电话号码是否重复 重复则重新输入
-
+        if(userServiceI.queryPwdByUser(user.getPhone()) != null){//如果账号已经存在
+            model.addAttribute("RegisterMsg",actExistMsg);
+            return "/user/register";
+        }
         //如果昵称为空 自动给一个
         if(user.getNickName().isEmpty())
             user.setNickName("新用户"+ RandomUtil.number(6));
         //打印信息
-        System.out.println("controller----insert");
         System.out.println(user.toString());
         //插入
         userServiceI.insert(user);
@@ -77,11 +88,18 @@ public class UserController {
 
     @RequestMapping("/login")
     public String login(Model model, String userAccount, String password, HttpSession session){//已经输入账号密码
+        System.out.println("controller----login");
         //获取密码
         String realPwd = userServiceI.queryPwdByUser(userAccount);
-        String loginMsg = "账号错误或密码不匹配，请重新输入";
+        //错误信息
+        String actNullMsg = "账号不存在，请重新输入";
+        String pwdErrorMsg = "密码不匹配，请重新输入";
+        //判断账号是否存在
+        if(realPwd == null){//如果密码不存在
+            model.addAttribute("LoginMsg",actNullMsg);
+            return "/user/login";
+        }
         //打印信息
-        System.out.println("controller----login");
         System.out.println("userAccount: " + userAccount);
         System.out.println("password: " + password);
         System.out.println("realPwd: " + realPwd);
@@ -99,7 +117,7 @@ public class UserController {
             return "redirect:/shop/index";
         }else{//如果密码不正确，重新输入密码
             System.out.println("INFO----登陆失败");
-            model.addAttribute("LoginMsg",loginMsg);
+            model.addAttribute("LoginMsg",pwdErrorMsg);
             return "/user/login";
         }
     }

@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body >
-<form class="form-horizontal" role="form" id="displayImfForm" th:object="${session.Admin}">
+<form class="form-horizontal" role="form" id="displayImfForm" th:object="${session.Admin}" action="/admin/update">
     <div class="form-group">
         <label class="col-sm-2 control-label">adId</label>
         <div class="col-sm-10">
@@ -16,30 +17,48 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="NickName" class="col-sm-2 control-label">名称</label>
+        <label for="name" class="col-sm-2 control-label">名称</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="nickName" name="nickName" th:value="*{getName()}" placeholder="名称">
+            <input type="text" class="form-control" id="name" name="name" th:value="*{getName()}" placeholder="名称" readonly="readonly">
         </div>
     </div>
     <div class="form-group">
         <label for="phone" class="col-sm-2 control-label">电话号码</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="phone" name="phone" th:value="*{getPhone()}" placeholder="电话号码" >
+            <input type="text" class="form-control" id="phone" name="phone" th:value="*{getPhone()}" placeholder="电话号码" readonly="readonly">
         </div>
     </div>
     <div class="form-group">
-        <label for="RealName" class="col-sm-2 control-label">真实姓名</label>
+        <label for="introduce" class="col-sm-2 control-label">公司介绍</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="realName" name="realName" th:value="*{getIntroduce()}" placeholder="真实姓名">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-10">
-            <button class="form-control" id="update" onclick="update()" >编辑</button>
-            <input type="submit" class="form-control" id="submit" onclick="document.getElementById('displayImfForm').action = '/admin/update';" value="保存" >
+            <input type="text" class="form-control" id="introduce" name="introduce" th:value="*{getIntroduce()}" placeholder="真实姓名" readonly="readonly">
         </div>
     </div>
 </form>
-
+<div id="buttonGroup" style="text-align: center">
+<button id="submit" onclick="unlock()" class="btn btn-primary">编辑</button>&emsp;&emsp;
+<button id="update" onclick="update()" class="btn btn-primary">保存</button>
+</div>
 </body>
+<script>
+    //readonly
+    function unlock() {
+        var list = document.getElementsByTagName("input");//获取所有input
+        for(var i=0;i<list.length && list[i];i++){
+            if(list[i].type == "text"){//筛选
+                list[i].readOnly = "";
+            }
+        }
+    }
+    //readonly
+    function update() {
+        var list = document.getElementsByTagName("input");//获取所有input
+        for(var i=0;i<list.length && list[i];i++){
+            if(list[i].type == "text"){//筛选
+                list[i].readOnly = "readonly";
+            }
+        }
+        document.getElementById("displayImfForm").submit();
+    }
+</script>
 </html>

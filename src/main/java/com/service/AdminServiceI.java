@@ -13,4 +13,6 @@ public interface AdminServiceI {
     public String queryNameByAdmin(String userAccount);
     /*查询所有信息*/
     public Administrator query(String adminAccount);
+    /*根据id修改信息*/
+    public void update(Administrator administrator);
 }

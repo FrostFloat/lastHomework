@@ -19,7 +19,7 @@ public class IndexController {
     /*跳转到产品索引界面*/
     @RequestMapping("/index")
     public String index(Model model){
-        return "/index";
+        return "forward:/travelPackage/index";
     }
 
 }

@@ -15,5 +15,6 @@ public interface AdminDao {
     public String queryNameByAdmin(String adminAccount);
     /*查询所有信息*/
     public Administrator query(String adminAccount);
-
+    /*根据id修改信息*/
+    public void update(Administrator administrator);
 }

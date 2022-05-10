@@ -34,12 +34,12 @@ public class TravelPackage {
     private String arrangement;
     private String company;
     private String imgLocation;
-    private List<Visitor> visitors;
+
 
     public TravelPackage() {
     }
 
-    public TravelPackage(int id, String name, double price, int amount, String summary, String beginDate, String returnDate, String arrangement, String company, String imgLocation, List<Visitor> visitors) {
+    public TravelPackage(int id, String name, double price, int amount, String summary, String beginDate, String returnDate, String arrangement, String company, String imgLocation) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -50,7 +50,6 @@ public class TravelPackage {
         this.arrangement = arrangement;
         this.company = company;
         this.imgLocation = imgLocation;
-        this.visitors = visitors;
     }
 
     public int getId() {
@@ -133,13 +132,6 @@ public class TravelPackage {
         this.imgLocation = imgLocation;
     }
 
-    public List<Visitor> getVisitors() {
-        return visitors;
-    }
-
-    public void setVisitors(List<Visitor> visitors) {
-        this.visitors = visitors;
-    }
 
     @Override
     public String toString() {
@@ -154,7 +146,6 @@ public class TravelPackage {
                 ", arrangement='" + arrangement + '\'' +
                 ", company='" + company + '\'' +
                 ", imgLocation='" + imgLocation + '\'' +
-                ", visitors=" + visitors +
                 '}';
     }
 }

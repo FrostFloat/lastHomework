@@ -3,23 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>用户中心</title>
-    <link rel="stylesheet" href="/css/user/userCenter.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--
-    <style type="text/css">
+    <style type="text/css" rel="stylesheet">
+        body{
+            background-image: linear-gradient(to right, #ff9569 0%, #e92758 100%);
+        }
         #userCenter{
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
+            justify-content: space-around;
+        }
+        #verticalNavigation{
+            height: 200px;
+            border-radius: 18px;
+        }
+        #userConfig{
+            height: 1000px;
+            border-radius: 8px;
+        }
+        #userConfig,#verticalNavigation{
+            background-color: white;
+            opacity: 0.6;
         }
     </style>
-    -->
 </head>
-<body>
+<body >
     <!--页面标题-->
-    <div class="page-header">
+    <div class="page-header" style="text-align: center;">
         <h1>
             个人中心
         </h1>
@@ -28,9 +41,8 @@
         <!--垂直导航栏-->
         <div id="verticalNavigation">
             <ul class="nav nav-pills nav-stacked">
-                <li><a target="config" href="/user/config/displayImf">个人中心</a></li>
-                <li><a target="config" href="/user/config/assets">资产</a></li>
-                <li><a target="config" href="/user/config/order">订单</a></li>
+                <li><a target="config" href="/user/config/displayImf" style="white-space: nowrap">个人中心</a></li>
+                <li><a target="config" href="/user/config/order" style="white-space: nowrap">订单</a></li>
             </ul>
         </div>
         <!--详细内容-->
@@ -40,9 +52,14 @@
         </div>
         -->
         <div id="userConfig">
-            <iframe src="/user/config/displayImf" id="config" name="config" frameborder="0" width="1000px" height="1000px"></iframe>
+            <iframe src="/user/config/displayImf" id="config" name="config" frameborder="0" width="1000px" height="1000px" scrolling="no"></iframe>
         </div>
 
     </div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 </body>
 </html>

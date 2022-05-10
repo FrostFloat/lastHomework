@@ -3,48 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <title>产品信息</title>
-    <link rel="stylesheet" href="/css/">
+    <link rel="stylesheet" href="/css/data/adminData.css">
+    <link rel="stylesheet" href="../../static/css/data/adminData.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <!--面向管理员的产品细节展示-->
+<h3 class="text-center"><strong th:text="${detail.getName()}">标题</strong></h3>
+<br/>
 <div id="tp" class="container">
-    <div class="row clearfix">
-        <div id="img" class="col-md-6 column">
-            <img alt="140x140" class="img-rounded" src="../../static/images/tp/test.jpg" height="300px" width="300px" />
+    <form id="tpForm" method="post" action="/travelPackage/updateTP">
+    <div id="ImgDetail" class="row clearfix">
+        <div id="img" class="col-md-6 column" style="text-align: center">
+            <a href="/travelPackage/config/uploadImg">
+                <img alt="140x140" class="img-rounded" src="../../static/images/tp/test.jpg" height="300px" width="300px" />
+            </a>
         </div>
         <div id="detail" class="col-md-6 column">
             <ul>
                 <li>
-                    Lorem ipsum dolor sit amet
+                    <span><strong>id:&emsp;&emsp;&emsp;&emsp;</strong></span>
+                    <input type="text" id="id" name="id" th:value="${detail.getId()}" placeholder="编号" readonly="readonly">
                 </li>
-
+                <li>
+                    <span><strong>价格:&emsp;&emsp;&emsp;</strong></span>
+                    <input type="text" id="price" name="price" th:value="${detail.getPrice()}" placeholder="价格" readonly="readonly">
+                </li>
+                <li>
+                    <span><strong>数量:&emsp;&emsp;&emsp;</strong></span>
+                    <input type="text" id="amount" name="amount" th:value="${detail.getAmount()}" placeholder="数量" readonly="readonly">
+                </li>
+                <li>
+                    <span><strong>出发时间:&emsp;</strong></span>
+                    <input type="text" id="beginDate" name="beginDate" th:value="${detail.getBeginDate()}" placeholder="出发时间" readonly="readonly">
+                </li>
+                <li>
+                    <span><strong>返回时间:&emsp;</strong></span>
+                    <input type="text" id="returnDate" name="returnDate" th:value="${detail.getReturnDate()}" placeholder="返回时间" readonly="readonly">
+                </li>
             </ul>
         </div>
     </div>
-
-    <div id="summary" class="row clearfix">
+    <br/>
+    <div class="row clearfix">
         <div class="col-md-12 column">
-            <form role="form">
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" readonly="readonly"></textarea>
+                    <label for="summary">概述</label>
+                    <textarea id="summary" name="summary" class="form-control" rows="3"
+                              th:value="${detail.getSummary()}"
+                              placeholder="概述"
+                              readonly="readonly"></textarea>
                 </div>
-            </form>
         </div>
     </div>
-
-    <div id="arrangements" class="row clearfix">
+    <br/>
+    <div  class="row clearfix">
         <div class="col-md-12 column">
-            <form role="form">
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" readonly="readonly"></textarea>
+                    <label for="arrangement">具体安排</label>
+                    <textarea id="arrangement" name="arrangement" class="form-control" rows="3"
+                              th:value="${detail.getArrangement()}"
+                              placeholder="安排1;&#10;安排2;"
+                              readonly="readonly"></textarea>
                 </div>
-            </form>
         </div>
     </div>
+    <br/>
 
+    </form>
+    <div id="buttonGroup" class="btn-group" style="text-align: center;">
+        <div>
+            <button type="button" class="btn btn-default" onclick="editTP()">编辑</button>&emsp;
+            <button type="button" class="btn btn-default" onclick="saveTP()">保存</button>&emsp;
+            <button type="button" class="btn btn-default" onclick="deleteTP()">删除</button>
+        </div>
+    </div>
 </div>
 </body>
+<script type="text/javascript" th:inline="javascript">
+    function editTP() {
+        var list = document.getElementsByTagName("input");//获取所有input
+        for(var i=0;i<list.length && list[i];i++){
+            if(list[i].type == "text" && list[i].name != "id"){//筛选
+                list[i].readOnly = "";
+            }
+        }
+        list = document.getElementsByTagName("textarea");
+        for(var i=0;i<list.length && list[i];i++){
+                list[i].readOnly = "";
+        }
+    }
+    function saveTP() {
+        var reSave = confirm("确定修改?");
+        if(reSave == true) {
+            document.getElementById("tpForm").submit();
+        }
+    }
+    function deleteTP(){
+        var reDelete = confirm("确定删除该产品？");
+        if(reDelete == true) {
+            var list = document.getElementsByTagName("input");//获取所有input
+            for (var i = 0; i < list.length && list[i]; i++) {
+                if (list[i].type == "text") {//筛选
+                    list[i].readOnly = "readonly";
+                }
+            }
+            list = document.getElementsByTagName("textarea");
+            for (var i = 0; i < list.length && list[i]; i++) {
+                list[i].readOnly = "readonly";
+            }
+            window.location.href = '/travelPackage/deleteTP?id=' + document.getElementById("id").value;
+        }
+    }
+</script>
 </html>

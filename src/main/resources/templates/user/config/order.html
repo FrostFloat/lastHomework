@@ -5,6 +5,27 @@
     <title>订单</title>
 </head>
 <body style="background-color: purple;text-align: center">
-订单
+<table class="table table-hover">
+    <tr>
+        <th>编号</th>
+        <th>名称</th>
+        <th>价格</th>
+        <th>数量</th>
+        <th>开始日期</th>
+        <th>返回日期</th>
+        <th>详细</th>
+    </tr>
+
+    <tr th:each="tp:${session.TravelPackages}" th:id="TP + ${tp.getId()}" th:href="@{/admin/displayTP(id=${tp.getId()})}">
+        <td th:text="${tp.id}">编号</td>
+        <td th:text="${tp.name}">名字</td>
+        <td th:text="${tp.price}">价格</td>
+        <td th:text="${tp.amount}">数量</td>
+        <td th:text="${tp.beginDate}">开始日期</td>
+        <td th:text="${tp.returnDate}">返回日期</td>
+        <td><a th:href="@{/admin/displayTP(id=${tp.getId()})}"><span class="glyphicon glyphicon-info-sign"></span></a></td>
+    </tr>
+</table>
+
 </body>
 </html>

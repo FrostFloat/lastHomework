@@ -20,4 +20,5 @@ public interface UserDao {
     public User query(String userAccount);
     /*根据id修改信息*/
     public void updateById(User user);
+
 }

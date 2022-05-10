@@ -6,10 +6,27 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css" rel="stylesheet">
+        body{
+            background-image: linear-gradient(to right, #fddb92 0%, #d1fdff 100%);
+
+        }
+        #registerFormDiv{
+            background-color: white;
+            opacity: 0.6;
+            border-radius: 6px;
+            margin: auto;
+            width: 800px;
+            height: 400px;
+
+        }
+    </style>
 </head>
 <body>
-<!--用户注册框-->
 <div id="registerFormDiv">
+<!--用户注册框-->
+<p style="color: red;text-align: center" th:text="${RegisterMsg}" th:if="${not #strings.isEmpty(RegisterMsg)}">错误信息</p>
+<p style="color: blue ;text-align: center;" th:if="${#strings.isEmpty(RegisterMsg)}">请输入相关信息</p>
     <form class="form-horizontal" id="registerForm" role="form" method="post">
         <div class="form-group">
             <label for="nickName" class="col-sm-2 control-label">昵称</label>
@@ -41,27 +58,25 @@
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入电话号码"  required="required">
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-10">
-                <input type="submit" class="form-control" id="submit" value="提交" onclick="equalPwd()">
-            </div>
-            <div class="col-sm-10">
-                <input type="reset" class="form-control" id="reset" value="重置" >
-            </div>
-        </div>
-    </form>
-    <script>
-        //判断两次输入的密码是否相同
-        function equalPwd() {
-            if (document.getElementById("confirmPassword").value != document.getElementById("password").value){//不相同 则清空两次输入的密码
-                alert("两次输入的密码不相同,请重新输入");
-            }
-            else {//相同 则发生跳转
-                document.getElementById("registerForm").action = "/user/register";
 
-            }
-        }
-    </script>
+    </form>
+    <div id="buttonGroup" style="text-align: center">
+        <button class="btn btn-primary" id="submit" onclick="equalPwd();document.getElementById('registerForm').submit();" >注册</button>&emsp;&emsp;
+            <button class="btn btn-primary" id="reset" onclick="document.getElementById('registerForm').reset()" >重置</button>&emsp;&emsp;
+        <button class="btn btn-primary" id="back" onclick="location.href='/user/userLogin'">返回</button>
+    </div>
 </div>
 </body>
+<script>
+    //判断两次输入的密码是否相同
+    function equalPwd() {
+        if (document.getElementById("confirmPassword").value != document.getElementById("password").value){//不相同 则清空两次输入的密码
+            alert("两次输入的密码不相同,请重新输入");
+        }
+        else {//相同 则发生跳转
+            document.getElementById("registerForm").action = "/user/register";
+
+        }
+    }
+</script>
 </html>

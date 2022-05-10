@@ -5,8 +5,9 @@
  tp-img-suffix:
    - .jpg
    - .png
-   - guangzhou
-   - shenzhen
+   - .jpeg
+
+
  # 配置mybatis
  spring:
    datasource:

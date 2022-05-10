@@ -25,5 +25,12 @@
     <select id="query" parameterType="String" resultMap="BaseResultMap" resultType="com.bean.Administrator">
         SELECT * FROM administrator WHERE adPhone = #{adminAccount}
     </select>
+    <update id="update" parameterType="com.bean.Administrator">
+        UPDATE administrator
+        SET
+        adPhone = #{phone}, adName = #{name}, adIntroduce = #{introduce}
+        WHERE
+        (adId = #{id});
+    </update>
 
 </mapper>

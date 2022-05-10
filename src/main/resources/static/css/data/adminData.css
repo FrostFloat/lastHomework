@@ -1,0 +1,22 @@
+textarea{
+    resize: none;
+}
+ul,li{
+    list-style-type: none;
+}
+input{
+    border: none;
+}
+#ImgDetail{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+#tp{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+

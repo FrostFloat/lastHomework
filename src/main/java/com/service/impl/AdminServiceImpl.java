@@ -45,5 +45,12 @@ public class AdminServiceImpl implements AdminServiceI {
         System.out.println("account: " + adminAccount);
         return adminDao.query(adminAccount);
     }
+
+    @Override
+    public void update(Administrator administrator){
+        System.out.println("service----updateById");
+        System.out.println("administrator: " + administrator);
+        adminDao.update(administrator);
+    }
 }
 

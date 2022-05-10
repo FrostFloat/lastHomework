@@ -7,18 +7,11 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script>
-        //解除readonly——未实现
-        function update() {
-            var test = document.getElementById("NickName");
-            test.readOnly = false;
 
-        }
-    </script>
 </head>
 <body>
 
-<form class="form-horizontal" role="form" id="displayImfForm" th:object="${session.User}">
+<form class="form-horizontal" role="form" id="displayImfForm" th:object="${session.User}" action="/user/update">
     <div class="form-group">
         <label class="col-sm-2 control-label">UID</label>
         <div class="col-sm-10">
@@ -28,28 +21,49 @@
     <div class="form-group">
         <label for="NickName" class="col-sm-2 control-label">昵称</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="nickName" name="nickName" th:value="*{getNickName()}" placeholder="昵称">
+            <input type="text" class="form-control" id="nickName" name="nickName" th:value="*{getNickName()}" placeholder="昵称" readonly="readonly">
         </div>
     </div>
     <div class="form-group">
         <label for="phone" class="col-sm-2 control-label">电话号码</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="phone" name="phone" th:value="*{getPhone()}" placeholder="电话号码" >
+            <input type="text" class="form-control" id="phone" name="phone" th:value="*{getPhone()}" placeholder="电话号码" readonly="readonly">
         </div>
     </div>
     <div class="form-group">
         <label for="RealName" class="col-sm-2 control-label">真实姓名</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="realName" name="realName" th:value="*{getRealName()}" placeholder="真实姓名">
+            <input type="text" class="form-control" id="realName" name="realName" th:value="*{getRealName()}" placeholder="真实姓名" readonly="readonly">
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-sm-10">
-            <button class="form-control" id="update" onclick="update()" >编辑</button>
-            <input type="submit" class="form-control" id="submit" onclick="document.getElementById('displayImfForm').action = '/user/update';" value="保存" >
-        </div>
-    </div>
-</form>
-</body>
 
+</form>
+<div id="buttonGroup" style="text-align: center">
+    <button id="update" class="btn btn-primary" onclick="unlock()">编辑</button>&emsp;&emsp;
+    <button id="submit" class="btn btn-primary" onclick="lock()">保存</button>
+</div>
+
+</body>
+<script>
+    //解除readonly
+    function unlock() {
+        alert("开启编辑");
+        var list = document.getElementsByTagName("input");//获取所有input
+        for(var i=0;i<list.length && list[i];i++){
+            if(list[i].type == "text"){//筛选
+                list[i].readOnly = "";
+            }
+        }
+    }
+    //readonly
+    function lock() {
+        var list = document.getElementsByTagName("input");//获取所有input
+        for(var i=0;i<list.length && list[i];i++){
+            if(list[i].type == "text"){//筛选
+                list[i].readOnly = "readonly";
+            }
+        }
+        document.getElementById("displayImfForm").submit();
+    }
+</script>
 </html>

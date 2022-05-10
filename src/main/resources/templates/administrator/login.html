@@ -6,13 +6,33 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css" rel="stylesheet">
+        body{
+            background-image: linear-gradient(to right, #acb6e5 , #86fde8 );
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+        }
+        #container{
+            margin-top: 100px;
+            background-color: white;
+            opacity: 0.8;
+            width: 450px;
+            height: 250px;
+            border-radius: 5%;
+        }
+    </style>
 </head>
 <body>
+<div id="container">
+    <br/>
+<p style="color: red" th:text="${LoginMsg}" th:if="${not #strings.isEmpty(LoginMsg)}">错误信息</p>
+<p style="color: blue" th:if="${#strings.isEmpty(LoginMsg)}">请输入账号和密码</p>
 <!--管理员登录框-->
-<div id="loginForm">
-    <form class="form-horizontal" role="form" method="post" action="/admin/login">
-        <p style="color: red" th:text="${LoginMsg}" th:if="${not #strings.isEmpty(LoginMsg)}">请输入账号和密码</p>
-        <p style="color: blue" th:if="${#strings.isEmpty(LoginMsg)}">请输入账号和密码</p>
+<div id="loginDiv">
+    <form id="loginForm" class="form-horizontal" role="form" method="post" >
         <div class="form-group">
             <label for="adminAccount" class="col-sm-2 control-label">账号</label>
             <div class="col-sm-10">
@@ -22,23 +42,24 @@
         <div class="form-group">
             <label for="password" class="col-sm-2 control-label">密码</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="password" name="password" placeholder="请输入密码">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-10">
-                <input type="submit" class="form-control" id="submit" value="登录" >
-                <button class="form-control" id="register" onclick="jump('/admin/adminRegister')">注册</button>
-                <button class="form-control" id="admin" onclick="jump('/user/userLogin')">返回</button>
+                <input type="text" class="form-control" id="password" name="password" placeholder="请输入密码" onclick="document.getElementById('loginForm').action='/admin/login'" required="required">
             </div>
         </div>
     </form>
-
+    <div id="buttonGroup" style="text-align: center">
+    <button class="btn btn-primary" id="submit" onclick="save()">登录</button>&emsp;&emsp;
+    <button class="btn btn-primary" id="register" onclick="jump('/admin/adminRegister')">注册</button>&emsp;&emsp;
+    <button class="btn btn-primary" id="admin" onclick="jump('/user/userLogin')">返回</button>
+    </div>
 </div>
+</div>
+</body>
 <script>
+    function save() {
+        document.getElementById("loginForm").submit();
+    }
     function jump(url) {
         location.href=url;
     }
 </script>
-</body>
 </html>

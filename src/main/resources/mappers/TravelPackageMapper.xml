@@ -3,10 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.TravelPackageDao">
+    <resultMap id="BaseResultMapIndex" type="com.bean.Index" >
+        <result column="tpId" property="id"></result>
+        <result column="tpName" property="name"></result>
+        <result column="tpSummary" property="summary"></result>
+    </resultMap>
     <resultMap id="BaseResultMap" type="com.bean.TravelPackage" >
         <result column="tpId" property="id"></result>
         <result column="tpName" property="name"></result>
         <result column="tpPrice" property="price"></result>
+        <result column="tpAmount" property="amount"></result>
         <result column="tpSummary" property="summary"></result>
         <result column="tpBeginDate" property="beginDate"></result>
         <result column="tpReturnDate" property="returnDate"></result>
@@ -26,4 +32,27 @@
     <select id="queryById" parameterType="String" resultMap="BaseResultMap" resultType="com.bean.TravelPackage">
         SELECT * FROM travelpackage WHERE tpId=#{id}
     </select>
+    <select id="queryIndex" parameterType="String" resultMap="BaseResultMapIndex" resultType="com.bean.Index">
+        SELECT * FROM travelpackage
+    </select>
+    <delete id="deleteById" parameterType="String">
+        DELETE FROM travelpackage where tpId = #{id}
+    </delete>
+    <update id="updateById" parameterType="com.bean.TravelPackage">
+        UPDATE travelpackage
+        SET
+        tpAmount = #{amount}, tpPrice = #{price}, tpBeginDate = #{beginDate},tpReturnDate=#{returnDate},tpArrangement=#{arrangement},tpSummary=#{summary}
+        WHERE
+        (tpId = #{id});
+    </update>
+    <select id="queryAmountById" parameterType="Integer" resultType="Integer">
+        SELECT tpAmount FROM travelpackage WHERE tpId = #{id}
+    </select>
+    <update id="updateAmountById" parameterType="Integer">
+        UPDATE travelpackage
+        SET
+        tpAmount = #{amount}
+        WHERE
+        (tpId = #{id});
+    </update>
 </mapper>

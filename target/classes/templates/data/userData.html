@@ -6,58 +6,113 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <STYLE type="text/css" rel="stylesheet">
+        ul,li{
+            list-style-type: none;
+        }
+        ul{
+            font-size: large;
+        }
+        body{
+            background-image: linear-gradient(-90deg, #29bdd9 0%, #276ace 100%);
+        }
+        #tp{
+            background-color: white;
+            opacity: 0.6;
+            margin: auto;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #detail{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #ImgDetail{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+    </STYLE>
 </head>
 <body>
 <!--面向用户的产品细节展示-->
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <ul class="breadcrumb">
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">Library</a>
-                </li>
-                <li class="active">
-                    Data
-                </li>
-            </ul>
-            <div class="row clearfix">
-                <div class="col-md-4 column">
-                    <img alt="140x140" src="v3/default3.jpg" />
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                Panel title
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            Panel content
-                        </div>
-                        <div class="panel-footer">
-                            Panel footer
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 column">
-                    <h3 class="text-left">
-                        h3. 这是一套可视化布局系统.
-                    </h3>
-                    <p>
-                        <em>Git</em> 是一个分布式的版本控制系统，最初由 <strong>Linus Torvalds</strong> 编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在 <small>Ruby</small> 社区中。
-                    </p>
-                </div>
-
+<h3 class="text-center"><strong th:text="${detail.getName()}">标题</strong></h3>
+<br/>
+<div id="tp" class="container">
+<br/>
+        <div id="ImgDetail" class="row clearfix">
+            <div id="img" class="col-md-6 column" style="text-align: center">
+                <a href="/travelPackage/config/uploadImg">
+                    <img alt="140x140" class="img-rounded" src="../../static/images/tp/test.jpg" height="300px" width="300px" />
+                </a>
             </div>
-            <h2>
-                Heading
-            </h2>
-            <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-            </p>
+            <div id="detail" class="col-md-6 column">
+                <ul>
+                    <li style="display: none">
+                        <span><strong>id:&emsp;&emsp;&emsp;&emsp;</strong></span>
+                        <label id="id" name="id" th:text="${detail.getId()}" placeholder="编号" ></label>
+                    </li>
+                    <li>
+                        <span><strong>价格:&emsp;&emsp;&emsp;</strong></span>
+                        <label id="price" name="price" th:text="${detail.getPrice()}" placeholder="价格" ></label>
+                    </li>
+                    <li>
+                        <span><strong>数量:&emsp;&emsp;&emsp;</strong></span>
+                        <label id="amount" name="amount" th:text="${detail.getAmount()}" placeholder="数量" ></label>
+                    </li>
+                    <li>
+                        <span><strong>出发时间:&emsp;</strong></span>
+                        <label id="beginDate" name="beginDate" th:text="${detail.getBeginDate()}" placeholder="出发时间"></label>
+                    </li>
+                    <li>
+                        <span><strong>返回时间:&emsp;</strong></span>
+                        <label id="returnDate" name="returnDate" th:text="${detail.getReturnDate()}" placeholder="返回时间" ></label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br/>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="form-group">
+                    <label for="summary">概述</label>
+                    <textarea id="summary" name="summary" class="form-control" rows="2"
+                              th:placeholder="${detail.getSummary()}"
+                              readonly="readonly"></textarea>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div  class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="form-group">
+                    <label for="arrangement">具体安排</label>
+                    <textarea id="arrangement" name="arrangement" class="form-control" rows="3"
+                              th:placeholder="${detail.getArrangement()}"
+                              readonly="readonly"></textarea>
+                </div>
+            </div>
+        </div>
+        <br/>
+    <div id="buttonGroup"  style="text-align: center;">
+        <div>
+            <button type="button" class="btn btn-primary" onclick="buy()">购买</button>&emsp;
+            <button type="button" class="btn btn-primary" onclick="window.location.href='/shop/index'">返回</button>&emsp;
         </div>
     </div>
+    <br/>
 </div>
+<br/>
+<br/>
+<br/>
 </body>
+<script>
+    function buy() {
+        window.location.href = "/order/buy?id="+document.getElementById("id").innerText;
+    }
+</script>
 </html>

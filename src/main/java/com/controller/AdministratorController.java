@@ -50,7 +50,7 @@ public class AdministratorController {
     /*展示产品详细信息页面*/
     @RequestMapping("/displayTP")
     public String displayDetailedTP(Model model){
-        return "forward:/travelPackage/displayDetailedTP";
+        return "forward:/travelPackage/admin/displayDetailedTP";
     }
 
     /*展示企业信息页面*/
@@ -66,11 +66,18 @@ public class AdministratorController {
      */
     @RequestMapping("/login")
     public String login(Model model, String adminAccount, String password, HttpSession session){
+        System.out.println("controller----login");
         //获取密码
         String realPwd = adminServiceI.queryPwdByAdmin(adminAccount);
-        String loginMsg = "账号错误或密码不匹配，请重新输入";
+        //错误信息
+        String actNullMsg = "账号不存在，请重新输入";
+        String pwdErrorMsg = "密码不匹配，请重新输入";
+        //判断账号是否存在
+        if(realPwd == null){//如果密码不存在
+            model.addAttribute("LoginMsg",actNullMsg);
+            return "/administrator/login";
+        }
         //打印信息
-        System.out.println("controller----login");
         System.out.println("adminAccount: " + adminAccount);
         System.out.println("password: " + password);
         System.out.println("realPwd: " + realPwd);
@@ -90,7 +97,7 @@ public class AdministratorController {
             return "redirect:/admin/adminCenter";
         }else{//如果密码不正确，重新输入密码
             System.out.println("INFO----登陆失败");
-            model.addAttribute("LoginMsg",loginMsg);
+            model.addAttribute("LoginMsg",pwdErrorMsg);
             return "/administrator/login";
         }
     }
@@ -98,6 +105,14 @@ public class AdministratorController {
     @RequestMapping("/register")
     public String register(Model model, Administrator administrator){
         System.out.println("controller----register");
+        //错误信息
+        String actExistMsg = "该电话号码已经存在,请更换电话号码";
+        //判断电话号码是否重复 重复则重新输入
+        if(adminServiceI.queryPwdByAdmin(administrator.getPhone()) != null){//如果账号已经存在
+            model.addAttribute("RegisterMsg",actExistMsg);
+            return "/administrator/register";
+        }
+        //自动补充空缺数据
         if(administrator.getIntroduce().isEmpty()){//如果介绍为空，则自动填入
             administrator.setIntroduce("介绍为空。。。。");
         }
@@ -109,14 +124,17 @@ public class AdministratorController {
 
     @RequestMapping("/update")
     public String update(Model model, HttpSession session,Administrator administrator){
-        //打印信息
         System.out.println("controller----update");
+        //补充缺失信息
+        administrator.setId(((Administrator)session.getAttribute("Admin")).getId());
+        //打印信息
         System.out.println(administrator.toString());
         //确认电话号码是否重复
         //更新数据
-
+        adminServiceI.update(administrator);
         //更新session
-        return "redirect:/admin/config/displayImf";
+        session.setAttribute("Admin",administrator);
+        return "forward:/admin/config/displayImf";
     }
 
 }
